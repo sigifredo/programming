@@ -10,25 +10,17 @@ using namespace std;
 #define print(X)    cout << X << endl
 #define debug()     cout << __LINE__ << endl
 
-int d1[105][105];
-int d2[105][105];
-
 int inf = 1 << 28;
 
 int main(int argc, char **)
 {
-    while(true)
+    int n, A, B;
+
+    while(cin >> n)
     {
 MIENTRAS:
-        int n, A, B;
-
         char linea[500];
-        cin.getline(linea, 500);
-        {
-            stringstream ss(linea);
-            ss >> n;
-        }
-        if(n == 0) break;
+
         int d1[n][n];
         int d2[n][n];
 
@@ -78,7 +70,8 @@ MIENTRAS:
 
                 }
 
-        for(int i = 0; i < n; i++) for(int j = 0; j < n; j++) if(d2[i][j] > (A*d1[i][j]+B)) {
+        for(int i = 0; i < n; i++) for(int j = 0; j < n; j++) if(d2[i][j] > (A*d1[i][j]+B))
+{
                     cout << "No" << endl;
                     goto MIENTRAS;
                 }
