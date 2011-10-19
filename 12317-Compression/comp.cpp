@@ -31,12 +31,12 @@ void readline(int &l)
 
 int f(int codif, int nBase, int * base, int i, int rp)
 {
-    if((base[i] & codif) != base[i]) return inf;
     rp |= base[i];
     if(rp == codif) return 1;
     int min = inf;
     for(int k = i+1; k < nBase; k++)
     {
+        if((base[k]&codif) != base[k]) continue;
         int r = f(codif, nBase, base, k, rp);
         if(min > r && r > 0) min = r + 1;
     }
