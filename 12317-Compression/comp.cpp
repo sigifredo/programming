@@ -43,19 +43,6 @@ int f(int codif, int nBase, int * base, int i, int rp)
     return min;
 }
 
-int encode(int codif, int nBase, int * base)
-{
-    int min = inf;
-    for(int i = 0; i < nBase; i++)
-    {
-        if((base[i] & codif) != base[i]) continue;
-
-        int r = f(codif, nBase, base, i, 0);
-        if(min > r && r > 0) min = r;
-    }
-    return (min == inf)?0:min;
-}
-
 int main()
 {
     int n, m;
@@ -63,16 +50,37 @@ int main()
     while(readNM(m, n))
     {
         int base[m];
+        int b2[m];
         int cod[n];
 
         std::memset(base, 0, m*sizeof(int));
+        std::memset(b2, 0, m*sizeof(int));
         std::memset(cod, 0, n*sizeof(int));
 
         for(int i = 0; i < m; i++) readline(base[i]);
         for(int i = 0; i < n; i++) readline(cod[i]);
 
-        for(int i = 0; i < n; i++) cout << encode(cod[i], m, base) << " ";
-        cout << endl;
+        for(int i = 0; i < m; i++)
+        {
+            for(int j = i; j < m; j++)
+            {
+                b2[i] |= base[j];
+            }
+        }
+
+        for(int i = 0; i < n; i++)
+        {
+            for(int j = m-1; j >= 0; --j)
+            {
+                if((b2[j] & cod[i]) == cod[i])
+                {
+                    int r = f(cod[i], m, base, j, 0);
+                    cout << ((r == inf)?0:r) << " ";
+                }
+            }
+		cout << endl;
+        }
+
     }
 
     return 0;
