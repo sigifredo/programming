@@ -11,16 +11,11 @@ struct point {
     int x, y;
     point(int x = 1, int y = -1): x(x), y(y) {}
     bool operator < (const point &p) const {
-        return (x*p.y - p.x*y < 0);
+        return (x*p.y - p.x*y > 0);
     }
 };
 
 typedef std::pair<point, point> pair;
-
-bool sort(const pair &p1, const pair &p2)
-{
-    return p1.first.x < p2.first.x;
-}
 
 int main()
 {
@@ -39,21 +34,32 @@ int main()
             cin >> ps[i].second.x >> ps[i].second.y;
             if(ps[i].second < ps[i].first) std::swap(ps[i].first, ps[i].second);
         }
-        std::sort(ps, ps+n, sort);
-        int k = ps[0].first.x - 1, disp = 0;
+//         cout << "coordenadas" << endl;
+// 	for(int i = 0; i < n; i++)
+// 	{
+// 	    cout << "(" << ps[i].first.x << ", " << ps[i].first.y << ") - (" << ps[i].second.x << ", " << ps[i].second.y << ")" << endl;
+// 	}
+        std::sort(ps, ps+n);
+// 	cout << "sort" << endl;
+// 	for(int i = 0; i < n; i++)
+// 	{
+// 	    cout << "(" << ps[i].first.x << ", " << ps[i].first.y << ") - (" << ps[i].second.x << ", " << ps[i].second.y << ")" << endl;
+// 	}
+        point k;
+	int shots = 0;
         for(int i = 0; i < n; i++)
         {
-            if(ps[i].first.x > k)
+            if(k < ps[i].first)
             {
-                disp++;
-                k = ps[i].second.x;
+                shots++;
+                k = ps[i].second;
             }
             else
             {
-                if(ps[i].second.x < k) k = ps[i].second.x;
+                if(ps[i].second < k) k = ps[i].second;
             }
         }
-        cout << disp << endl;
+        cout << shots << endl;
     }
 
     return 0;
