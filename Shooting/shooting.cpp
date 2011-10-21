@@ -9,7 +9,7 @@ using std::endl;
 
 struct point {
     int x, y;
-    point(int x = 1, int y = -1): x(x), y(y) {}
+    point(int _x = 1, int _y = -1): x(_x), y(_y) {}
     bool operator < (const point &p) const {
         return (x*p.y - p.x*y > 0);
     }
@@ -34,21 +34,18 @@ int main()
             cin >> ps[i].second.x >> ps[i].second.y;
             if(ps[i].second < ps[i].first) std::swap(ps[i].first, ps[i].second);
         }
-//         cout << "coordenadas" << endl;
-// 	for(int i = 0; i < n; i++)
-// 	{
-// 	    cout << "(" << ps[i].first.x << ", " << ps[i].first.y << ") - (" << ps[i].second.x << ", " << ps[i].second.y << ")" << endl;
-// 	}
+
         std::sort(ps, ps+n);
-// 	cout << "sort" << endl;
-// 	for(int i = 0; i < n; i++)
-// 	{
-// 	    cout << "(" << ps[i].first.x << ", " << ps[i].first.y << ") - (" << ps[i].second.x << ", " << ps[i].second.y << ")" << endl;
-// 	}
+
         point k;
-	int shots = 0;
+        int shots = 0;
         for(int i = 0; i < n; i++)
         {
+            if(i == 0)
+            {
+                shots++;
+                k = ps[i].second;
+            }
             if(k < ps[i].first)
             {
                 shots++;
