@@ -25,7 +25,7 @@ int repetidos(int * v, int n) //Función repetidos, encuentra el número de elemen
 
     for(i = 0; i < n; i++)
         for(j = i+1; j < n; j++)
-            if(v[i] == v[j] && i != j && i !=-1)
+            if(v[i] == v[j] && i != j)
             {
                 for(k = j+1; k < n; k++)
                     if(v[i] == v[k])
