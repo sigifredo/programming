@@ -21,7 +21,7 @@ int main() //Función Principal
 int repetidos(int * v, int n) //Función repetidos, encuentra el número de elementos 
 //repetidos en el vector
 {
-    int i = 0, j = 0, k , rep = 0;
+    int i = 0, j = 0, k, rep = 0;
 
     for(i = 0; i < n; i++)
         for(j = i+1; j < n; j++)
