@@ -1,4 +1,6 @@
-﻿Public Class MDIForm
+﻿Option Explicit On
+
+Public Class MDIForm
 
     Private Sub NuevoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NuevoToolStripMenuItem.Click
         Dim NewMDIChild As New Form2()
